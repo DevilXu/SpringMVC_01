@@ -6,13 +6,6 @@
 	<display-name></display-name>
 	
 	
-	<!-- 监听spring上下文容器 -->
-	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
-	</listener>
-	
 	<!-- 加载spring的xml配置文件到 spring的上下文容器中 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -37,12 +30,23 @@
 	<!-- 配置DispatcherServlet所需要拦截的 url -->
 	<servlet-mapping>
 		<servlet-name>MVC</servlet-name>
-		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>page/index.html</welcome-file>
 	</welcome-file-list>
 
-
+	<servlet-mapping>
+	    <servlet-name>default</servlet-name>
+	    <url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>default</servlet-name>
+	    <url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>default</servlet-name>
+	    <url-pattern>*.css</url-pattern>
+	</servlet-mapping>  
 </web-app>
