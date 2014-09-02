@@ -1,4 +1,4 @@
-package org.swinglife.controller.bean;
+package org.app.users.bean;
 
 import java.io.Serializable;
 

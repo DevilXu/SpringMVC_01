@@ -1,8 +1,8 @@
-package org.swinglife.controller.service;
+package org.app.users.service;
 
 import java.util.List;
 
-import org.swinglife.controller.bean.demo;
+import org.app.users.bean.demo;
 
 public interface DemoService{
 	public List<demo> getUserByUid();

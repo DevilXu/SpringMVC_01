@@ -1,4 +1,4 @@
-package org.swinglife.controller.action;
+package org.app.users.action;
 
 
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.swinglife.controller.bean.demo;
-import org.swinglife.controller.service.DemoService;
+import org.app.users.bean.demo;
+import org.app.users.service.DemoService;
 @Controller
 public class UserController extends AbstractBaseController{
 	@Autowired   
@@ -20,18 +20,20 @@ public class UserController extends AbstractBaseController{
 	@Autowired   
 	private DemoService demoService;
 	private List<demo> listDemo=new ArrayList<demo>();
-	@RequestMapping(value="page/login",method=RequestMethod.POST)
+	@RequestMapping(value="page/login")
 	public ModelAndView login(String username,String password){
 		if(this.checkParams(new String[]{username,password})){
 			ModelAndView mav = new ModelAndView("succ");
 			mav.addObject("username",username);
 			mav.addObject("password", password);
+			this.getSession().setAttribute("user", username);
 			listDemo=demoService.getUserByUid();
 			mav.addObject("listDemo", listDemo);
 			return mav;
 		}
-		return new ModelAndView("index");
+		return new ModelAndView("login");
 	}
+	
 	@RequestMapping(value="page/jump")
 	public ModelAndView jump(String username,String password){
 		return new ModelAndView("demo/index");
@@ -56,6 +58,14 @@ public class UserController extends AbstractBaseController{
 		}
 		return true;
 	}
-
-
+	/**
+	 * 判断session中是否存在登录用户信息 保证登录的唯一性
+	 * @param username
+	 */
+	private final void sessionControll(String username){
+		if(username.equals(this.getSession().getAttribute("user"+username))){
+			this.getSession().removeAttribute("user"+username);
+			this.getSession().setAttribute("user"+username, username);
+		}
+	}
 }

@@ -1,5 +1,6 @@
 package org.common.base;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import net.sf.json.JSONArray;
@@ -20,6 +22,7 @@ public abstract class AbstractBaseController {
 	protected HttpServletRequest request ; 
 	protected HttpServletResponse response ;
 	protected HttpSession session ;
+	protected ServletContext application;
 	/**
 	 * 初始话获取request,response,session对象
 	 * @param request
@@ -30,6 +33,7 @@ public abstract class AbstractBaseController {
 		this.request=request;
 		this.response=response;
 		this.session=request.getSession(true);
+		this.application=this.session.getServletContext();
 	}
 	/**
 	 * 将对象转化成json格式数据以ajax方式输出到页面
@@ -71,5 +75,11 @@ public abstract class AbstractBaseController {
 
 	public HttpServletResponse getResponse() {
 		return response;
+	}
+	public ServletContext getApplication() {
+		return application;
+	}
+	public void setApplication(ServletContext application) {
+		this.application = application;
 	}	
 }
