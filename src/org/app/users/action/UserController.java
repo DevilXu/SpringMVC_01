@@ -8,18 +8,17 @@ import org.common.base.AbstractBaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.app.users.bean.demo;
-import org.app.users.service.DemoService;
+import org.app.users.bean.User;
+import org.app.users.service.UserService;
 @Controller
 public class UserController extends AbstractBaseController{
 	@Autowired   
-	private demo demo=new demo();
+	private User user=new User();
 	@Autowired   
-	private DemoService demoService;
-	private List<demo> listDemo=new ArrayList<demo>();
+	private UserService demoService;
+	private List<User> listUser=new ArrayList<User>();
 	@RequestMapping(value="page/login")
 	public ModelAndView login(String username,String password){
 		if(this.checkParams(new String[]{username,password})){
@@ -27,8 +26,8 @@ public class UserController extends AbstractBaseController{
 			mav.addObject("username",username);
 			mav.addObject("password", password);
 			this.getSession().setAttribute("user", username);
-			listDemo=demoService.getUserByUid();
-			mav.addObject("listDemo", listDemo);
+			listUser=demoService.getUserByUid();
+			mav.addObject("listUser", listUser);
 			return mav;
 		}
 		return new ModelAndView("login");
@@ -42,8 +41,8 @@ public class UserController extends AbstractBaseController{
 	@RequestMapping(value="page/getList")
 	@ResponseBody 
 	public void getList() throws Exception {  
-		listDemo=demoService.getUserByUid();
-		this.outputAjaxJsonData(listDemo);
+		listUser=demoService.getUserByUid();
+		this.outputAjaxJsonData(listUser);
 	}  
 	/***
 	 * ��֤����

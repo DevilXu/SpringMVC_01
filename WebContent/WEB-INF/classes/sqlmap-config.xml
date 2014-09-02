@@ -13,5 +13,5 @@
 	/>
   
 	<!--可以配置更多的xxx   -SQL.xml文件-->  
-	<sqlMap resource="org/app/users/bean/demo_SqlMap.xml" />
+	<sqlMap resource="org/app/users/bean/User_SqlMap.xml" />
 </sqlMapConfig>

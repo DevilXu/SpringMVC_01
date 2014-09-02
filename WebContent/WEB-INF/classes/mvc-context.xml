@@ -47,7 +47,6 @@
     
     <mvc:interceptors>  
     	<bean class="org.common.intercept.LoginIntercept" />  
-    	<mvc:exclude-mapping path="/"/>  
     </mvc:interceptors>               
    
                

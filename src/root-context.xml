@@ -18,10 +18,10 @@
 	
 	<!-- DataSource数据源 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-  		<property name="username" value="hzqb_hc" /> 
-  		<property name="password" value="hzqbhc123" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/myDB" />
+  		<property name="username" value="root" /> 
+  		<property name="password" value="xlt63255957" />
 
 	</bean>
 	
